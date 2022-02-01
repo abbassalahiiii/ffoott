@@ -1,0 +1,181 @@
+{% extends 'myhtml/base.html' %}
+
+{% load user_agents %}
+
+
+
+
+        {% block main %}
+
+
+        {% block title-mata %}جدول{% endblock %}
+
+
+<body class="body" style="background-color:rgb(245, 245, 245)">
+    
+<center>
+
+    {% if request|is_mobile %}
+
+    <table class="tb" style="margin-top:110px;margin-bottom:110px;">
+        <tr width="100%">
+           
+                    
+                <div id="pos-article-display-66592"></div>
+            
+            <td class="t" width="100%" style="position:relative;">
+             
+                    
+                    <center>
+                            <div class="row" style="margin-bottom: 40px;margin-top: 20px;">
+                                    <div class="col-12" >
+                                       
+                                        <div class="card" style="border-radius : 10px;box-shadow: 5px 5px 10px grey;margin-left: 1%;margin-right: 2%;">
+                                           
+                                            <div class="table-responsive p-0"style="border-radius : 10px;">
+                                                <table dir="rtl"  class="table table-striped table-hover;">
+                                         <thead style="color:white;background:rgb(0, 83, 36)">
+                                             <tr>
+                                                 <th colspan="11"><center><h5>جدول لیگ برتر خلیج فارس</h5></center></th>
+                                             </tr>
+                                             <thead style="color:white;background:rgb(10, 82, 72)">
+                                    <tr>
+                                            
+                                            <th>  </th>
+                                            <th>تیم</th>
+                                            <th>  </th>
+                                            <th>بازی</th>
+                                            <th>برد</th>
+                                            <th>تساوی</th>
+                                            <th>باخت</th>
+                                            <th>گل‌زده</th>
+                                            <th>گل‌خورده</th>
+                                            <th>تفاضل‌گل</th>
+                                            <th>امتیاز</th>
+                                        
+                                    </tr>
+                                    </thead>
+                                </thead>
+                                {% for t in tables %}
+                                    <tr>
+                                        <td class="num"></td>
+                                        <td><img width="30" height="30" src="{{t.thunbnail.url}}" ></td>
+                                        <td>{{t.title}}</td>
+                                        <td>{{t.bazi}}</td>
+                                        <td>{{t.bord}}</td>
+                                        <td>{{t.tasavi}}</td>
+                                        <td>{{t.bakht}}</td>
+                                        <td>{{t.goalezade}}</td>
+                                        <td>{{t.goalekhorde}}</td>
+                                        <td>{{t.tafazolegoal}}</td>
+                                        <td>{{t.emtiaz}}</td>
+                                    </tr>
+                                {% endfor %}
+                                </table>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                <div id="pos-article-display-66103"></div>
+                                
+                          
+                          </center>
+
+            </td>
+           
+                 
+                    
+            
+        </tr>
+    </table>
+
+    {% else %}
+    <table class="tb" style="margin-top:110px;margin-bottom:110px;">
+        <tr width="100%">
+            <td width="25%" style="position:-ms-page;margin: 2%;margin-right: 2%;"> 
+                    
+                    <div id="pos-article-display-66104"></div>
+            </td>
+            <td class="t" width="30%" style="position:relative;">
+             
+                    
+                    <center>
+                            <div class="row" style="margin-bottom: 40px;margin-top: 20px;">
+                                    <div class="col-12" >
+                                       
+                                        <div class="card" style="border-radius : 10px;box-shadow: 2px 2px 5px grey;margin: 2%;margin-right: 2%;">
+                                           
+                                           <div class="table-responsive p-0"style="border-radius : 10px;">
+                                               <table dir="rtl"  class="table table-striped table-hover;">
+                                        <thead style="color:white;background:rgb(0, 83, 36)">
+                                            <tr>
+                                                <th colspan="11"><center><h5>جدول لیگ برتر خلیج فارس</h5></center></th>
+                                            </tr>
+                                            <thead style="color:white;background:rgb(10, 82, 72)">
+                                    <tr>
+                                            
+                                            <th>  </th>
+                                            <th>تیم</th>
+                                            <th>  </th>
+                                            <th>بازی</th>
+                                            <th>برد</th>
+                                            <th>تساوی</th>
+                                            <th>باخت</th>
+                                            <th>گل‌زده</th>
+                                            <th>گل‌خورده</th>
+                                            <th>تفاضل‌گل</th>
+                                            <th>امتیاز</th>
+                                        
+                                    </tr>
+                                    </thead>
+                                </thead>
+                                {% for t in tables %}
+                                    <tr>
+                                        <td class="num"></td>
+                                        <td><img width="30" height="30" src="{{t.thunbnail.url}}" ></td>
+                                        <td>{{t.title}}</td>
+                                        <td>{{t.bazi}}</td>
+                                        <td>{{t.bord}}</td>
+                                        <td>{{t.tasavi}}</td>
+                                        <td>{{t.bakht}}</td>
+                                        <td>{{t.goalezade}}</td>
+                                        <td>{{t.goalekhorde}}</td>
+                                        <td>{{t.tafazolegoal}}</td>
+                                        <td>{{t.emtiaz}}</td>
+                                    </tr>
+                                {% endfor %}
+                                </table>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+
+                                
+                          
+                          </center>
+                        
+                         
+
+            </td>
+            <td width="25%" style="position:-ms-page;margin: 2%;margin-right: 2%;">
+                  <div id="pos-article-display-66103"></div>
+                    
+            </td>
+        </tr>
+    </table>
+    {% endif %}
+        
+
+
+</center>
+</body>
+</html>
+
+{% endblock %}
+
+
+
+
+                           
+                                          
+            

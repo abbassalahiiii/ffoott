@@ -1,0 +1,18 @@
+{% load comment_tags %}
+{% load i18n %}
+{% include_static %}
+{% include_bootstrap %}
+<html lang="en">
+  <head>
+    <title class="comment-translatable">{% block title %}{% trans "نظر حذف شد " %}.{% endblock %}</title>
+  </head>
+  <body class="container-fluid text-center">
+    {% include "comment/comments/messages.html" %}
+    <div class="pl-3 pr-3">
+      {% block content %}
+      <h3 class="comment-translatable">{% trans "نظر را نمی توان تأیید کرد. " %}</h3>
+      <p><i class="comment-translatable">{% trans "با عرض پوزش، نظر شما به طور خودکار نادیده گرفته شده است. " %}</i></p>
+      {% endblock content %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+{% extends 'myhtml/base.html' %}
+{% block main %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="b.css" />
+
+    
+</head>
+<style>
+        
+    
+    </style>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <table>
+        <tr width="100%">
+            <td width="34%" style="position: absolute;"> 
+                {% include "myhtml\partial\jadval.html" %}
+
+            </td>
+            <td width="30%" >
+
+                {% for a in articles %}
+                <center>
+                        <a href="{% url 'hello:detail' a.slug %}">
+                        <div class="card" style="border-radius : 20px;background: rgb(235, 235, 235);box-shadow: 3px 3px 5px grey;margin-left: 10px;margin-right: 10px;margin-bottom: 20;">
+                                <img style="width:100%;border-radius : 20px 20px 0px 0px;height: 40%;"  src="{{a.thunbnail.url}}" alt="{{a.title}}">
+                                <div class="container">
+                                        <h6><a href="{% url 'hello:detail' a.slug %}">{{a.title}}</a></h4>
+                                        <p dir="rtl">{{a.discriptions|safe|striptags|truncatewords:20}}</p>
+                                        <small dir="rtl">{{a.jpublish}}</small><br>
+                                        
+                                          {% for c in a.category_published.all %}
+                                          <a href="{% url 'hello:category' c.slug %}">#{{c.title}}</a>
+                                          {% endfor %}
+                                 </div>
+                                </div>
+                        </a>
+                      
+                     {% endfor %}
+               </center>
+               <hr>
+
+          </td>
+            <td width="35%" style="position:absolute;">
+                   
+                {% for n in news %}
+                <center>
+                        <div class="card" style="border-radius : 20px;box-shadow: 3px 3px 5px grey;margin-left: 10px;margin-top:20px;margin-right: 10px;background: rgb(235, 235, 235);margin-top:30px;margin-bottom:30px;"style="position:fixed;">
+                                <div class="card-body">
+                                        <article>
+                                                <p dir="rtl" style="color:rgb(0, 86, 136)" ><b>{{n.title}}</b> : {{n.discriptions|safe|striptags}}</p>
+                                            </article>
+                                </div>
+                              </div>
+                              
+                </center>
+            {% endfor %}
+        
+            </td>
+        </tr>
+    </table>
+   
+     
+     <center>
+        <div class="clearfix pager-botton" style="margin-top:30px;margin-bottom:30px;">
+            {% if articles.has_next %}
+            <a class="btn btn-primary float-right" href="{% url 'hello:category' category.slug %}?p={{articles.next_page_number}}">&larr;قبلی </a>
+            {% endif %}
+            {% if articles.has_previous %}
+           <a class="btn btn-primary float-right ml-3" href="{% url 'hello:category' category.slug %}?p={{articles.previous_page_number}}">بعدی &rarr;</a>
+           {% endif %}
+           
+         </div>
+     </center>
+     
+     
+</body>
+</html>
+
+{% endblock %}

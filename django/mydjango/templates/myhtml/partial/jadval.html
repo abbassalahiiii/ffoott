@@ -1,0 +1,62 @@
+
+
+
+<a style="text-decoration:olive;color:rgb(32, 32, 32);" href="{% url 'hello:jadval' %}">
+                            <div class="row">
+                                    <div class="col-12">
+                                       
+                                        <div class="card" style="border-radius : 10px;box-shadow: 5px 5px 10px grey;margin-left: 5px;margin-right: 5px;">
+                                           
+                                           <div class="table-responsive p-0" style="border-radius : 10px;">
+                                            
+                                               <table dir="rtl" class="table table-striped table-hover">
+                                                
+                                        <thead style="color:white;background:rgb(10, 82, 72)">
+                                    <tr>
+                                            <th> </th>
+                                            <th>تیم</th>
+                                            
+                                            <th>بازی</th>
+                                            
+                                            <th>برد</th>
+                                           
+                                            <th>تساوی</th>
+                                            
+                                            <th>باخت</th>
+                                            
+                                            <th>امتیاز</th>
+                                        
+                                    </tr>
+                                    </thead>
+                                   
+                                {% for t in tables %}
+                                
+                                    <tr>
+                                    
+                                        
+                                        <td><img width="25" height="25" src="{{t.thunbnail.url}}" ></td>
+                                        <td>{{t.title}}</td>
+                                        
+                                        <td>{{t.bazi}}</td>
+                                        
+                                        <td>{{t.bord}}</td>
+                                        
+                                        <td>{{t.tasavi}}</td>
+                                        
+                                        <td>{{t.bakht}}</td>
+                                        
+                                        <td>{{t.emtiaz}}</td>
+                                    
+                                    </tr>
+                                
+                                {% endfor %}
+                            
+                                
+                                </table>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                           </a>
+                                          
+            

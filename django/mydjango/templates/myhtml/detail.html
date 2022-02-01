@@ -1,0 +1,193 @@
+{% extends 'myhtml/base.html' %}
+{% load ratings %}
+{% load comment_tags %}
+{% load humanize %}
+{% load user_agents %}
+
+
+{% block main %}
+{% block title-mata %} فوتبالت|{{a.title}}{% endblock %}
+
+<head>
+        <meta name="description" content="{{a.discriptions|safe}}">
+</head>
+
+{% if request|is_mobile %} %}
+
+
+
+<body style="background-color:rgb(245, 245, 245)">
+    <table class="tb" style="margin-top:140px;margin-bottom:2%;">
+        <center>
+        
+                   
+            
+            <tr width="100%" style="position:-ms-page;">
+                    <div id="pos-article-display-66592"></div>
+                    <center>
+                            <div class="card style-my" style="border-radius : 20px;margin-left: 10px;margin-right: 10px;margin-bottom: 20;">
+                                <center>
+                                        <img style="box-shadow: 5px 5px 10px grey;border-radius : 0px 0px 20px 20px;height: 40%;" alt="{{a.title}}" src="{{a.thunbnail.url}}" alt="{{a.title}}" width="50%" height="50%"></header>
+                                
+                                </center>
+                                                    
+                                     
+                                  
+                        <article>
+                            <br>
+                            <h1 dir="rtl">{{a.title}}</h1>
+                            <br>
+                            <h5 dir="rtl">{{a.jpublish}} ({{a.publish|naturaltime}})</h5>
+                            <br>
+                            <p dir="rtl" style="text-align:justify;padding-left: 20px;padding-right: 20px;"width="60%">{{a.discriptions|safe|linebreaks}}</p>
+                        </article>
+                        <br>
+                        <div>بازدید: {{a.hits.count}}</div>
+                        <br>
+                        <h4>لطفا به مقاله رای بدید</h4>
+                        {% ratings a %}
+                        <div id="pos-article-display-66592"></div>
+                        
+                        <div>
+                            {% load comment_tags %}  
+                            {% render_comments a request %}  
+                            {% include_bootstrap %}
+                          
+
+                            
+                        </div>
+                    </center>
+                </div>
+
+             
+        </tr>
+    </center>
+    </table> 
+    <div class="card style-my" style="color:white;background-color:rgb(17, 146, 0);border-radius : 7px;box-shadow: 3px 3px 10px grey;margin-left: 10px;margin-right: 10px;margin-top: 20px;">
+            <div class="container">
+                <p  style="margin-top: 7px;"class="text-center">آخرین مقالات</p>
+                </div>
+            </div>
+    <table style="margin-bottom:10%;">
+        <tr width="100%">
+                {% for a in art %}
+         <td width="15%">
+                
+                <a href="{% url 'hello:detail' a.slug %}">
+                
+                        
+                  <div class="carda style-my" style="border-radius : 10px;box-shadow: 3px 3px 10px grey; margin-top: 1%;margin-right: 10px;margin-bottom: 20;">
+                          <img alt="{{a.title}}" style="width:100%;border-radius : 10px 10px 0px 0px;height: 40%;" src="{{a.thunbnail.url}}" alt="{{a.title}}">
+                          <div class="container">
+                              <h4><a style="color:rgb(255, 255, 255);" dir="rtl" href="{% url 'hello:detail' a.slug %}">{{a.title}}</a></h4>
+                                
+                            </div>
+                        </div>
+                    
+                      
+                      
+                    </a>
+                     
+         </td>
+         {% endfor %}
+        </tr>
+    </table>
+</body>
+
+
+{% endif %}
+{% if request|is_pc %}
+
+
+<body style="background-color:rgb(245, 245, 245)">
+        <center>
+    <table class="tb" style="margin-top:110px;margin-bottom:110px;">
+        
+        <tr width="100%">
+            <td width="20%" style="position:-ms-page;margin-top:110px;"> 
+                    <div id="pos-article-display-65894"></div>
+                    <div id="pos-article-display-66104"></div>
+            </td>
+            <td width="60%" style="position:-ms-page;">
+                    <center>
+                            <div class="card style-my" style="border-radius : 20px;margin-left: 10px;margin-right: 10px;margin-bottom: 20;">
+                                <center>
+                                        <img style="box-shadow: 5px 5px 10px grey;border-radius : 0px 0px 20px 20px;height: 40%;" alt="{{a.title}}" src="{{a.thunbnail.url}}" alt="{{a.title}}" width="50%" height="50%"></header>
+                                
+                                </center>
+                                                    
+                                     
+                                  
+                        <article>
+                            <br>
+                            <h1 dir="rtl">{{a.title}}</h1>
+                            <br>
+                            <h5 dir="rtl">{{a.jpublish}} ({{a.publish|naturaltime}})</h5>
+                            <br>
+                            <p dir="rtl" style="text-align:justify;margin-left: 20px;margin-right: 20px;"width="60%">{{a.discriptions|safe|linebreaks}}</p>
+                        </article>
+                        <br>
+                    
+                        <h4>لطفا به مقاله رای بدید</h4>
+                        {% ratings a %}
+                        
+                        <div>
+                            {% load comment_tags %}  
+                            {% render_comments a request %}  
+                            {% include_bootstrap %}
+                        
+                        </div>
+                    </center>
+                </div>
+                <div class="card style-my" style="color:white;background-color:rgb(17, 146, 0);border-radius : 7px;box-shadow: 3px 3px 10px grey;margin-left: 10px;margin-right: 10px;margin-bottom: 20px;margin-top: 20px;">
+                        <div class="container">
+                            
+                            <p  style="margin-top: 7px;"class="text-center">آخرین مقالات</p>
+                            </div>
+                        </div>
+                <table style="margin-bottom:10%;">
+                    <tr width="100%">
+                            {% for a in art %}
+                     <td width="15%">
+                            
+                            <a href="{% url 'hello:detail' a.slug %}">
+                            <center>
+                                    
+                              <div class="carda style-my" style="border-radius : 10px;box-shadow: 3px 3px 10px grey;margin-left: 10px;margin-right: 10px;margin-bottom: 20;">
+                                      <img alt="{{a.title}}" style="width:100%;border-radius : 10px 10px 0px 0px;height: 40%;" src="{{a.thunbnail.url}}" alt="{{a.title}}">
+                                      <div class="container">
+                                          <h4><a style="color:rgb(255, 255, 255);" dir="rtl" href="{% url 'hello:detail' a.slug %}">{{a.title}}</a></h4>
+                                            
+                                        </div>
+                                    </div>
+                                
+                                  
+                                  </center>
+                                </a>
+                                 
+                     </td>
+                     {% endfor %}
+                    </tr>
+                </table>
+
+            </td>
+            <td width="20%" style="position:-ms-page;">
+                    <div id="pos-article-display-66103"></div>
+                    <div id="pos-article-display-66105"></div>
+                
+
+
+            </td>
+        </tr>
+   
+    </table> 
+</center>
+</body>
+
+{% endif %}
+
+{% endblock %}
+
+</html>
+
+

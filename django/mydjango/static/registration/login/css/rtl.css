@@ -1,0 +1,17 @@
+body{
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+
+.errors{
+    color: red;
+    background-color: rgb(236, 170, 170);
+    padding: 20px 30px;
+  }
+
+.btn-show-pass{
+    right:initial;
+    left: 0;
+}
+  

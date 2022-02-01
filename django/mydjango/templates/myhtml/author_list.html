@@ -1,0 +1,50 @@
+{% extends 'myhtml/base.html' %}
+{% block main %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+      
+</head>
+<body>
+    <header>
+        <h3 class="alert alert-primary text-center">نویسنده: {{author.get_full_name}}</h3>
+    </header>
+   {% for a in articles %}
+      <center>
+          
+        <article>
+            
+                <img style="border-radius : 20px"  src="{{a.thunbnail.url}}" alt="{{a.title}}" width="300" height="200">
+                    <h4><a href="{% url 'hello:detail' a.slug %}">{{a.title}}</a></h4>
+                    <p dir="rtl">{{a.discriptions|truncatewords:20}}</p>
+                    <small dir="rtl">{{a.jpublish}}</small><br>
+                    
+                      {% for c in a.category_published.all %}
+                      <a href="{% url 'hello:category' c.slug %}">#{{c.title}}</a>
+                      {% endfor %}
+
+                    
+             </article>
+             <hr>
+           {% endfor %}
+     </center>
+     <hr>
+     <center>
+        <div class="clearfix pager-botton">
+            {% if articles.has_next %}
+            <a class="btn btn-primary float-right" href="{% url 'hello:author' author.username %}?p={{articles.next_page_number}}">&larr;قبلی </a>
+            {% endif %}
+            {% if articles.has_previous %}
+           <a class="btn btn-primary float-right ml-3" href="{% url 'hello:author' author.username %}?p={{articles.previous_page_number}}">بعدی &rarr;</a>
+           {% endif %}
+           
+         </div>
+     </center>
+     
+     <hr>
+</body>
+</html>
+
+{% endblock %}

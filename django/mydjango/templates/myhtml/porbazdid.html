@@ -1,0 +1,74 @@
+{% extends 'myhtml/base.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>سایت من</title> 
+    <meta charset="UTF-8">  
+    <link rel="stylesheet" type="text/css" rel="noopener" target="_blank" href="b.css">
+</head>
+{% block main %}
+
+.style-my{
+    
+}
+
+<body>
+    
+    <table style="margin-top:70px">
+        <tr width="100%">
+            <td width="35%" style="position:absolute;"> 
+
+            </td>
+            <td width="30%" style="position:-ms-page;">
+             
+                    {% for a in art %}
+                    <center>
+                            <a href="{% url 'hello:detail' a.slug %}">
+                      <div class="card style-my" style="border-radius : 20px;background: rgb(235, 235, 235);box-shadow: 3px 3px 5px grey;margin-left: 10px;margin-right: 10px;margin-bottom: 20;">
+                              <img style="width:100%;border-radius : 20px 20px 0px 0px;height: 40%;" src="{{a.thunbnail.url}}" alt="{{a.title}}">
+                              <div class="container">
+                                  <h6><a href="{% url 'hello:detail' a.slug %}">{{a.title}}</a></h6>
+                                  <p dir="rtl">{{a.discriptions|safe|striptags|truncatewords:20}}</p>
+                                  <small dir="rtl">{{a.jpublish}}</small><br>
+                                  {% if user.superuser %}
+                                    {% for c in a.category_published.all %}
+                                    <a dir="rtl" href="{% url 'hello:category' c.slug %}">#{{c.title}}</a>
+                                    {% endfor %}
+                                  {% endif %}
+                                    
+                                </div>
+                            </div>
+                        </a>
+                          
+                          </center>
+                         {% endfor %}
+
+            </td>
+            <td width="35%" style="position:absolute;">
+                  
+            </td>
+        </tr>
+    </table>
+  
+           
+       
+     
+<center>
+    <div class="clearfix pager-botton" style="margin-top:30px;margin-bottom:30px;">
+        {% if art.has_next %}
+        <a class="btn btn-primary float-right" href="{% url 'hello:hello' %}?p={{art.next_page_number}}">قبلی &larr;</a>
+        {% endif %}
+        {% if art.has_previous %}
+       <a class="btn btn-primary float-right ml-3" href="{% url 'hello:hello' %}?p={{art.previous_page_number}}">بعدی &rarr;</a>
+       {% endif %}
+       
+     </div>
+</center>
+     
+     
+   
+</body>
+</html>
+
+{% endblock %}

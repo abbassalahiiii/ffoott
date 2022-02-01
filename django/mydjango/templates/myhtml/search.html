@@ -1,0 +1,77 @@
+{% extends 'myhtml/base.html' %}
+{% load ratings %}
+{% load humanize %}
+{% load static %}
+{% block main %}
+
+{% block title-mata %}فوتبالت{% endblock %}
+<body style="background-color:rgb(245, 245, 245)">
+  <center> 
+    <table class="tb" style="margin-top:110px;margin-bottom:110px;">
+        <tr width="100%">
+            <td width="30%" style="position:absolute;"> 
+               
+                        
+                        
+                        <div id="pos-article-display-65894"></div>
+                        <div id="pos-article-display-66104"></div>
+                
+            </td>
+            <td width="40%" style="position:-ms-page;">
+             
+                    {% for a in art %}
+                    <a href="{% url 'hello:detail' a.slug %}">
+                    <center>
+                            
+                      <div class="carda style-my" style="border-radius : 10px;box-shadow: 3px 3px 10px grey;margin-left: 10px;margin-right: 10px;margin-bottom: 5%;">
+                              <img alt="{{a.title}}" style="width:100%;border-radius : 10px 10px 0px 0px;height: 40%;" src="{{a.thunbnail.url}}" alt="{{a.title}}">
+                              <div class="container">
+                                  <h4><a style="text-decoration-line:inherit;color:rgb(255, 223, 223);" dir="rtl" href="{% url 'hello:detail' a.slug %}">{{a.title}}</a></h6>
+                                  <p style="margin-left:10px;margin-right:10px;" dir="rtl">{{a.discriptions|safe|striptags|truncatewords:20}}</p>
+                                  <small dir="rtl">{{a.jpublish}} ({{a.publish|naturaltime}})</small><br>
+                                  <div>
+                                        {% ratings a %}
+                                  </div>
+                                  
+                                   <!-- {% for c in a.category_published.all %}
+                                    <a dir="rtl" href="{% url 'hello:category' c.slug %}">#{{c.title}}</a>
+                                    {% endfor %}-->
+                                 
+                                    
+                                </div>
+                            </div>
+                        
+                          
+                          </center>
+                        </a>
+                         {% endfor %}
+
+            </td>
+            <td width="30%" style="position:absolute;">
+                <div id="pos-article-display-66103"></div>
+                <div id="pos-article-display-66255"></div>
+
+
+            </td>
+        </tr>
+    </table>
+  
+<center>
+    <div class="clearfix pager-botton" style="margin-top:30px;margin-bottom:120px;">
+            {% if art.has_previous %}
+            <a class="btn btn-primary float-right ml-3" href="{% url 'hello:hello' %}?p={{art.previous_page_number}}">بعدی &rarr;</a>
+            {% endif %}
+        {% if art.has_next %}
+        <a class="btn btn-primary float-right" href="{% url 'hello:hello' %}?p={{art.next_page_number}}">قبلی &larr;</a>
+        {% endif %}
+      
+       
+     </div>
+</center>
+     
+     
+</center> 
+</body>
+</html>
+
+{% endblock %}

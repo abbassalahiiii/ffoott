@@ -1,0 +1,61 @@
+{% load static %}
+
+</button>
+<div dir="ltr"class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-left mb-2 mb-lg-0">
+     <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'account:signup' %}">ثبت نام</a>
+      </li>
+    <li class="nav-item">
+        <a style="color:darkcyan" class="nav-link active" aria-current="page" href="{% url 'account:login' %}">ورود</a>
+      </li>
+    </ul>
+  </div>
+<div dir="rtl"class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav me-left mb-2 mb-lg-0">
+   
+    {% if user.superuser %}
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        دسته‌بندی
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% for c in cat %}
+        
+   
+        <li class="nav-item dropdown"></li>
+        <li><a class="dropdown-item" href="{% url 'hello:category' c.slug %}">{{c.title}}</a>
+            
+        {% endfor %}
+        
+      </ul>
+    </li>
+    {% endif %}
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="{% url 'hello:jadval' %}">جـــــدول</a>
+  </li>
+
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{% url 'hello:hello' %}">بــــرترین‌ها</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{% url 'hello:rooznameh' %}">روزنــــامه‌ها</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{% url 'hello:hello' %}">فــــان</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{% url 'hello:news' %}">اخبار</a>
+    </li>
+      
+          
+  
+  </ul>
+  
+
+  <!--<form style="left: 10px;" class="d-flex">-->
+      <!--<button class="btn btn-outline-success" type="submit">جستجو</button>-->
+    <!--<input class="form-control me-2" type="search" placeholder="دنبال چی هستی؟؟؟" aria-label="Search">-->
+ <!-- </form>-->
+</div>

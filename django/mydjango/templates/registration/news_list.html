@@ -1,0 +1,75 @@
+{% extends 'registration\base.html' %}
+{% block title %}{% block title-mata %}
+لیست مقالات
+{%endblock%}{%endblock%}
+
+{% block main %}
+     <div class="row">
+         <div class="col-12">
+             {% if object_list %}
+             <div class="card">
+                
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>عنوان مقاله</th>
+                               
+                                
+                                <th>دسته‌بندی</th>
+                                <th>خلاصه</th>
+                                <th>زمان انتشار</th>
+                                <th>وضعیت</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                {% for news in object_list %}
+                                <tr>
+                                        
+                                        <td>
+                                            {% if news.status in 'bd'|make_list %}
+                                            <a href="{% url 'account:news-update' news.pk %}">{{article.title}}</a>
+                                            {% else %}
+                                            {% if request.user.is_superuser %}
+                                            <h5>{{article.title}}</h5>
+                                            {% else %}
+                                            {{news.title}}
+                                            {% endif %}
+                                            {% endif %}
+                                            </td>
+                                        
+                                        <td>{{article.category_str}}</td>
+                                        <td>{{article.discriptions|safe|striptags|truncatewords:10}}</td>
+                                        <td>{{article.jpublish}}</td>
+                                        <td>
+                                            {% if article.status == 'p' %}
+                                                <span class="badge badge-success">منتشر شده</span>
+                                                <a class="badge badge-primary" href="{% url 'hello:detail' article.slug %}" >مشاهده در سایت</a>
+                                            {% else %}
+                                            <span class="badge badge-danger">پیش‌نویس</span>
+                                            {% endif %}
+                                            {% if user.is_superuser %}
+                                            <a class="badge text-danger" href="{% url 'account:article-delete' article.pk %}" >حذف</a>
+                                            {% endif %}
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                 </tr>
+                                
+                                {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+             </div>
+             {% else %}
+             محتوایی برای نمایش وجود ندارد
+             {% endif %}
+         </div>
+     </div>
+{% endblock %}

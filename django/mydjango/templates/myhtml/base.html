@@ -1,0 +1,131 @@
+
+{% load base_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <title>{% block title-mata %}عنوان صفحه{% endblock %}</title> 
+    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'favicon3.ico' %}">
+    <meta name="description" content="">
+    <script type="text/javascript">
+      (function(){
+      var now = new Date();
+      var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.async = true;
+      var script_address = 'https://cdn.yektanet.com/js/ssss.ir/native-ssss.ir-9628.js';
+      script.src = script_address + '?v=' + now.getFullYear().toString() + '0' + now.getMonth() + '0' + now.getDate() + '0' + now.getHours();
+      head.appendChild(script);
+      })();
+  </script>
+  <style>
+
+.carda{
+      background-color: rgb(0, 98, 190); 
+      color: white;
+    }
+
+.ca{
+      background-color: rgb(197, 0, 0); 
+      color: white;
+    }
+
+.t{
+zoom: 70%;
+}
+
+.tb{
+zoom: 85%;
+}
+
+            .table-striped tr:first-child td { 
+             background: rgb(147, 255, 125); 
+             }
+             .table-striped tbody tr:nth-child(2) { 
+             background: rgb(184, 255, 170); 
+             }
+             .table-striped tbody tr:nth-child(3) { 
+             background: rgb(211, 255, 203); 
+             }
+             .table-striped tbody tr:nth-child(15) { 
+             background: rgb(255, 200, 200); 
+             }
+             .table-striped tbody tr:nth-child(16) { 
+             background: rgb(255, 169, 169); 
+             }
+
+.table
+{
+    counter-reset: rowNumber;
+}
+
+.table tr > td:first-child
+{
+    counter-increment: rowNumber;
+}
+
+.table tr td:first-child::before
+{
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+} </style>
+</head>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top fixed-left fixed-right" style="box-shadow: 0px 1px 5px grey;">
+      <div dir="rtl"class="navbar">
+          
+            <li dir="ltr" class="nav">
+                <a class="nav-link active" aria-current="page" href="{% url 'hello:hello' %}"><img width="90px" height="30px" src="{% static 'footballet.png' %}"></a>
+              </li>
+        <li class="nav">
+          <a style="color:rgb(31, 31, 31);" class="nav-link active" aria-current="page" href="{% url 'hello:jadval' %}">جـــــدول</a>
+        </li>
+      
+  
+          </li>
+                  <li class="nav">
+            <a style="color:rgb(31, 31, 31);" class="nav-link active" aria-current="page" href="{% url 'hello:news' %}">اخبـــار</a>
+          </li>
+       {% if user.is_anonymous %}
+        <li class="nav">
+          <a style="color:rgb(1, 163, 55)"  class="nav-link active" aria-current="page" href="{% url 'account:signup' %}">ثبت نام</a>
+        </li>
+      <li class="nav">
+          <a style="color:darkcyan" class="nav-link active" aria-current="page" href="{% url 'account:login' %}">ورود</a>
+        </li>
+        {% else %}
+        <li class="nav">
+          <a style="color:rgb(1, 163, 55)"  class="nav-link active" aria-current="page" href="{% url 'account:home' %}">پنل کاربران</a>
+        </li>
+      <li class="nav">
+          <a style="color:darkcyan" class="nav-link active" aria-current="page" href="{% url 'account:login' %}">{{user.username}}</a>
+        </li>
+        {% endif %}
+         <form style="left: 10px;" class="d-flex" action="{% url 'hello:search' %}">
+      <button class="btn btn-outline-success" type="text">جستجو</button>
+    <input class="form-control me-2" type="search" name="q" placeholder="دنبال چی هستی؟؟؟" aria-label="Search">
+ </form>
+    </div>
+      </div>
+    </nav>
+
+
+{% block main %}
+
+{% endblock %}
+<footer class="card fixed-bottom">
+
+  </div>
+  <center>
+      <img width="90px" height="30px" src="{% static 'footballet.png' %}">
+      <p class="text-center">&copy; استفاده از مطالب سایت با ذکر منبع مجاز است.</p>
+  </center>
+</footer>
+</html>

@@ -1,0 +1,10 @@
+<ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+
+     {% for c in c.childeren.all %}
+      <li class="nav-item dropdown" ></li>
+           <li><a class="dropdown-item" href="{% url 'hello:category' c.slug %}"  >{{c.title}}</a>
+            {% if c.childeren.all %}
+           {% include 'myhtml/partial/category_loop.html' %}
+         {% endif %}
+        </li>    
+       {% endfor %}
